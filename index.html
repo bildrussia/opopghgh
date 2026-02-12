@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Zenith AI - Flagship Neural Workstation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+        
+        :root {
+            --accent-color: #6366f1;
+            --glass-bg: rgba(10, 10, 10, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            background: #050505;
+            color: #fff;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #root {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+        }
+
+        .liquid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #050505;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.25;
+            border-radius: 50%;
+            animation: move 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes move {
+            from { transform: translate(-15%, -15%) scale(1); }
+            to { transform: translate(15%, 15%) scale(1.3); }
+        }
+
+        .glass-effect {
+            background: var(--glass-bg);
+            backdrop-filter: blur(60px);
+            -webkit-backdrop-filter: blur(60px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .glass-effect-heavy {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(80px);
+            -webkit-backdrop-filter: blur(80px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .ripple-effect {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            border-radius: 50%;
+            animation: ripple-animation 0.6s linear;
+        }
+
+        @keyframes ripple-animation {
+            from { width: 0; height: 0; opacity: 0.5; }
+            to { width: 500px; height: 500px; opacity: 0; }
+        }
+
+        @keyframes wave {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+
+        .animate-wave {
+            animation: wave 1.2s infinite ease-in-out;
+        }
+
+        .sidebar-btn-container {
+            flex-shrink: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .sidebar-icon-wrapper {
+            flex-shrink: 0;
+            min-width: 40px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-menu {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.2s ease-out;
+            pointer-events: none;
+        }
+        .message-container:hover .message-menu {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Voice Button Pulse */
+        .mic-pulse {
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(.8); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .accent-bg { background-color: var(--accent-color); }
+        .accent-text { color: var(--accent-color); }
+        .accent-border { border-color: var(--accent-color); }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            .glass-effect {
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+            }
+            .chat-footer {
+                padding-bottom: env(safe-area-inset-bottom, 20px);
+            }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="liquid-bg">
+        <div class="blob w-[600px] h-[600px] bg-indigo-600 -top-40 -left-40"></div>
+        <div class="blob w-[700px] h-[700px] bg-purple-600 -bottom-40 -right-40"></div>
+        <div class="blob w-[400px] h-[400px] bg-blue-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+    </div>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+
+{
+  "name": "Zenith AI",
+  "description": "A flagship hyper-liquid glassmorphic AI workstation featuring isolated contexts, advanced voice interaction, OCR vision, and multi-language support.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
